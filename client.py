@@ -46,7 +46,7 @@ class Client(object):
                 msg_list = acpt[3:].split('\n')
                 msg_list = msg_list[:-2]
                 metrics = dict()
-                for i in range(len(msg_list) - 2):
+                for i in range(len(msg_list)):
                     msg_list[i] = msg_list[i].split(' ')
                     if msg_list[i][0] in metrics.keys():
                         n = 0
