@@ -2,11 +2,11 @@ import socket
 import time
 
 class ClientError(Exception):
-
+    """Exception ClientError"""
     pass
 
 class Client(object):
-
+    """Class Client with methods: put, get"""
     def __init__(self, host, port, timeout=None):
         self.host = host
         self.port = port
@@ -31,6 +31,7 @@ class Client(object):
             raise ClientError
 
     def get(self, metric):
+        
         try:
             with socket.create_connection((self.host, self.port)) as sock:
                 sock.sendall('get {}\n'.encode('utf8').format(metric))
@@ -60,4 +61,3 @@ class Client(object):
 
         except socket.error:
             raise ClientError
-
