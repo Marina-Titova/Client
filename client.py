@@ -16,8 +16,8 @@ class Client(object):
         timestamp = timestamp or str(int(time.time()))
 
         try:
-            with socket.create_connection((self.host, self.port)) as sock:
-                msg = 'put {} {} {}\n'.format(key, value, timestamp)
+            with socket.create_connection((self.host, self.port), self.timeout) as sock:
+                msg = f'put {key} {value} {timestamp}\n'
                 sock.sendall(msg.encode('utf8'))
                 acpt = sock.recv(1024).decode('utf8')
 
@@ -33,8 +33,8 @@ class Client(object):
     def get(self, metric):
         
         try:
-            with socket.create_connection((self.host, self.port)) as sock:
-                sock.sendall('get {}\n'.encode('utf8').format(metric))
+            with socket.create_connection((self.host, self.port), self.timeout) as sock:
+                sock.sendall(f'get {metric}\n'.encode('utf8'))
                 acpt = sock.recv(1024).decode('utf8')
 
                 if acpt == 'ok\n\n':
