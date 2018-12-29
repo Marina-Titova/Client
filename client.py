@@ -53,13 +53,13 @@ class Client(object):
                         n = 0
                         for tpl in metrics[msg_list[i][0]]:
                             if tpl[0] > int(msg_list[i][2]):
-                                metrics[msg_list[i][0]].insert(n, tuple(int(msg_list[i][2]), float(msg_list[i][1])))
+                                metrics[msg_list[i][0]].insert(n, (int(msg_list[i][2]), float(msg_list[i][1])))
                             elif tpl[0] < int(msg_list[i][2]) and n+1 == len(metrics[msg_list[i][0]]):
-                                metrics[msg_list[i][0]].append(tuple(int(msg_list[i][2]), float(msg_list[i][1])))
+                                metrics[msg_list[i][0]].append((int(msg_list[i][2]), float(msg_list[i][1])))
                             else:
                                 n += 1
                     else:
-                        metrics[msg_list[i][0]] = [tuple(int(msg_list[i][2]), float(msg_list[i][1]))]
+                        metrics[msg_list[i][0]] = [(int(msg_list[i][2]), float(msg_list[i][1]))]
 
                 return metrics
 
